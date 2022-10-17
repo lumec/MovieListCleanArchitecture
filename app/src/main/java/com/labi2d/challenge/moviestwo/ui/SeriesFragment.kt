@@ -1,10 +1,11 @@
-package com.labi2d.challenge.moviestwo
+package com.labi2d.challenge.moviestwo.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.labi2d.challenge.moviestwo.R
 
 class SeriesFragment : Fragment() {
 
