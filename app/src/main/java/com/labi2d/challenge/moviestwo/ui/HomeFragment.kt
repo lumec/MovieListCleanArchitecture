@@ -17,11 +17,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.show_recycler_view)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.film_recycler_view)
         lifecycleScope.launch {
-            val shows = RemoteConnection.service.listShows(getString(R.string.api_key))
-            recyclerView.adapter = ShowsAdapter(shows.results)
-            Log.e("log", "size ${shows.results?.size}")
+            val films = RemoteConnection.service.listFilms(getString(R.string.api_key))
+            recyclerView.adapter = FilmsAdapter(films.results)
+            Log.e("log", "size ${films.results?.size}")
         }
     }
 

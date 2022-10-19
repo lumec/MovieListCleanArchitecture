@@ -6,26 +6,26 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.labi2d.challenge.moviestwo.R
-import com.labi2d.challenge.moviestwo.model.Show
+import com.labi2d.challenge.moviestwo.model.Film
 
-class ShowsAdapter(private val dataset: List<Show>) :
-    RecyclerView.Adapter<ShowsAdapter.ViewHolder>() {
+class FilmsAdapter(private val dataset: List<Film>) :
+    RecyclerView.Adapter<FilmsAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView = view.findViewById(R.id.movie_title)
+        val textView: TextView = view.findViewById(R.id.film_title)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val adapterLayout = LayoutInflater
             .from(parent.context)
-            .inflate(R.layout.show_item_view, parent, false)
+            .inflate(R.layout.film_item_view, parent, false)
 
         return ViewHolder(adapterLayout)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val show = dataset[position]
-        holder.textView.text = show.name
+        val film = dataset[position]
+        holder.textView.text = film.name
     }
 
     override fun getItemCount(): Int = dataset.size

@@ -6,6 +6,6 @@ import retrofit2.http.Path
 interface RemoteService {
 
     @GET("{api_key}")
-    suspend fun listShows(@Path("api_key") apiKey: String): RemoteResponse
+    suspend fun listFilms(@Path("api_key") apiKey: String): RemoteResponse
 
 }
