@@ -18,9 +18,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val recyclerView = binding.filmRecyclerView
 
         lifecycleScope.launch {
+            binding.progress.visibility = View.VISIBLE
             val films = RemoteConnection.service.listFilms(getString(R.string.api_key))
             recyclerView.adapter = FilmsAdapter(films.results)
-            Log.e("log", "size ${films.results?.size}")
+            binding.progress.visibility = View.GONE
         }
     }
 
