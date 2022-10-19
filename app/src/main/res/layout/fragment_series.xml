@@ -5,11 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".ui.SeriesFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/series"
-        android:textSize="50dp" />
+    <include
+        android:id="@+id/common_recycler_view"
+        layout="@layout/common_recycler_view"/>
 
 
 </FrameLayout>

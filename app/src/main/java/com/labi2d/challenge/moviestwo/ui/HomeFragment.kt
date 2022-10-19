@@ -18,9 +18,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         with(FragmentHomeBinding.bind(view)) {
 
             lifecycleScope.launch {
+                val progress = commonRecyclerView.progress
+                val filmRecyclerView = commonRecyclerView.filmRecyclerView
+
                 progress.visibility = View.VISIBLE
+
                 val films = filmsRepository.retrieveFilms().results
                 filmRecyclerView.adapter = FilmsAdapter(films)
+
                 progress.visibility = View.GONE
             }
         }
