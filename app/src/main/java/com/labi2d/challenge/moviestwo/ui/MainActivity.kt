@@ -7,6 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.labi2d.challenge.moviestwo.R
 import com.labi2d.challenge.moviestwo.databinding.NavigationActivityBinding
 
@@ -16,20 +17,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = NavigationActivityBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        with (NavigationActivityBinding.inflate(layoutInflater)) {
+            setContentView(root)
+            setSupportActionBar(toolbar)
 
-        val toolbar = binding.toolbar
-        setSupportActionBar(toolbar)
+            val navHostFragment: NavHostFragment = myNavHostFragment.getFragment()
+            val navController = navHostFragment.navController
 
-        val navHostFragment: NavHostFragment = binding.myNavHostFragment.getFragment()
-        val navController = navHostFragment.navController
+            val topLevelDestinations = setOf(R.id.home_dest, R.id.movies_dest, R.id.series_dest)
+            appBarConfiguration = AppBarConfiguration(topLevelDestinations)
 
-        val topLevelDestinations = setOf(R.id.home_dest, R.id.movies_dest, R.id.series_dest)
-        appBarConfiguration = AppBarConfiguration(topLevelDestinations)
-
-        setupActionBar(navController, appBarConfiguration)
-        setupBottomNavMenu(binding, navController)
+            setupActionBar(navController, appBarConfiguration)
+            setupBottomNavMenu(bottomNavView, navController)
+        }
 
     }
 
@@ -37,8 +37,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfig)
     }
 
-    private fun setupBottomNavMenu(binding: NavigationActivityBinding, navController: NavController) {
-        val bottomNav = binding.bottomNavView
+    private fun setupBottomNavMenu(bottomNav: BottomNavigationView, navController: NavController) {
         bottomNav.setupWithNavController(navController)
     }
 }

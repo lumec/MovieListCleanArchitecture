@@ -14,15 +14,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val binding = FragmentHomeBinding.bind(view)
-        val recyclerView = binding.filmRecyclerView
+        with(FragmentHomeBinding.bind(view)) {
 
-        lifecycleScope.launch {
-            binding.progress.visibility = View.VISIBLE
-            val films = RemoteConnection.service.listFilms(getString(R.string.api_key))
-            recyclerView.adapter = FilmsAdapter(films.results)
-            binding.progress.visibility = View.GONE
+            lifecycleScope.launch {
+                progress.visibility = View.VISIBLE
+                val films = RemoteConnection.service.listFilms(getString(R.string.api_key))
+                filmRecyclerView.adapter = FilmsAdapter(films.results)
+                progress.visibility = View.GONE
+            }
         }
     }
-
 }
