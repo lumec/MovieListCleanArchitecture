@@ -8,6 +8,7 @@ import com.labi2d.challenge.moviestwo.R
 import com.labi2d.challenge.moviestwo.basicDiffUtil
 import com.labi2d.challenge.moviestwo.databinding.FilmItemViewBinding
 import com.labi2d.challenge.moviestwo.inflate
+import com.labi2d.challenge.moviestwo.loadIcon
 import com.labi2d.challenge.moviestwo.model.Film
 
 class FilmsAdapter(private val dataset: List<Film>) :
@@ -29,6 +30,7 @@ class FilmsAdapter(private val dataset: List<Film>) :
         private val binding = FilmItemViewBinding.bind(view)
         fun bind(film: Film) = with(binding) {
             filmTitle.text = film.name
+            filmTitle.loadIcon(film.type)
         }
     }
 }

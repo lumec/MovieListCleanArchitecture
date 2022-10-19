@@ -3,6 +3,7 @@ package com.labi2d.challenge.moviestwo
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.DiffUtil
 
@@ -18,4 +19,12 @@ inline fun <T : Any> basicDiffUtil(
 
     override fun areContentsTheSame(oldItem: T, newItem: T): Boolean =
         areContentsTheSame(oldItem, newItem)
+}
+
+fun TextView.loadIcon(type: String?) {
+    val icon = when(type) {
+        "MOVIE" -> R.drawable.ic_movies
+        else -> R.drawable.ic_series
+    }
+    setCompoundDrawablesWithIntrinsicBounds(icon, 0, 0, 0)
 }
