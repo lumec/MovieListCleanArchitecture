@@ -1,14 +1,11 @@
 package com.labi2d.challenge.moviestwo.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.Fragment
 import com.labi2d.challenge.moviestwo.R
-import com.labi2d.challenge.moviestwo.model.RemoteConnection
-import kotlinx.coroutines.launch
 
 class MoviesFragment : Fragment() {
 
