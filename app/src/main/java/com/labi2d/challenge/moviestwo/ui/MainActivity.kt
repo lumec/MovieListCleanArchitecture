@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        with (NavigationActivityBinding.inflate(layoutInflater)) {
+        with(NavigationActivityBinding.inflate(layoutInflater)) {
             setContentView(root)
             setSupportActionBar(toolbar)
 

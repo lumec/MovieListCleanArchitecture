@@ -1,16 +1,17 @@
 package com.labi2d.challenge.moviestwo.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.labi2d.challenge.moviestwo.R
 import com.labi2d.challenge.moviestwo.databinding.FragmentHomeBinding
-import com.labi2d.challenge.moviestwo.model.RemoteConnection
+import com.labi2d.challenge.moviestwo.model.FilmsRepository
 import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
+
+    private val filmsRepository by lazy { FilmsRepository(requireActivity().application) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -18,8 +19,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
             lifecycleScope.launch {
                 progress.visibility = View.VISIBLE
-                val films = RemoteConnection.service.listFilms(getString(R.string.api_key))
-                filmRecyclerView.adapter = FilmsAdapter(films.results)
+                val films = filmsRepository.retrieveFilms().results
+                filmRecyclerView.adapter = FilmsAdapter(films)
                 progress.visibility = View.GONE
             }
         }
