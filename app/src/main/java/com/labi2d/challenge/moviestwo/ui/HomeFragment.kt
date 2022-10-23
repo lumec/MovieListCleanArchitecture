@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.navArgs
 import com.labi2d.challenge.moviestwo.R
 import com.labi2d.challenge.moviestwo.databinding.FragmentCommonBinding
 import com.labi2d.challenge.moviestwo.model.FilmsRepository
@@ -15,8 +16,10 @@ import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment(R.layout.fragment_common) {
 
+    private val safeArgs: HomeFragmentArgs by navArgs()
+
     private val viewModel: HomeViewModel by viewModels {
-        HomeViewModelFactory( FilmsRepository(requireActivity().application), "")
+        HomeViewModelFactory(FilmsRepository(requireActivity().application), safeArgs.filmType)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
