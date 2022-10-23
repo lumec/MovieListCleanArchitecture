@@ -28,3 +28,9 @@ fun TextView.loadIcon(type: String?) {
     }
     setCompoundDrawablesWithIntrinsicBounds(icon, 0, 0, 0)
 }
+
+var View.visible: Boolean
+    get() = visibility == View.VISIBLE
+    set(value) {
+        visibility = if (value) View.VISIBLE else View.GONE
+    }

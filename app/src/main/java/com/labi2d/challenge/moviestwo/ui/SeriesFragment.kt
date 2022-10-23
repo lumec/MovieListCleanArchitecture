@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class SeriesFragment : Fragment(R.layout.fragment_common) {
 
-    private val filmsRepository by lazy { FilmsRepository(requireActivity().application, "SERIES") }
+    private val filmsRepository by lazy { FilmsRepository(requireActivity().application) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -20,7 +20,7 @@ class SeriesFragment : Fragment(R.layout.fragment_common) {
             lifecycleScope.launch {
                 progress.visibility = View.VISIBLE
 
-                val films = filmsRepository.retrieveFilms()
+                val films = filmsRepository.retrieveFilms("SERIES")
                 filmRecyclerView.adapter = FilmsAdapter(films)
 
                 progress.visibility = View.GONE
