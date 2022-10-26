@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.labi2d.challenge.moviestwo.R
-import com.labi2d.challenge.moviestwo.basicDiffUtil
+import com.labi2d.challenge.moviestwo.ui.common.basicDiffUtil
 import com.labi2d.challenge.moviestwo.databinding.FilmItemViewBinding
-import com.labi2d.challenge.moviestwo.inflate
-import com.labi2d.challenge.moviestwo.loadIcon
-import com.labi2d.challenge.moviestwo.model.Film
+import com.labi2d.challenge.moviestwo.ui.common.inflate
+import com.labi2d.challenge.moviestwo.ui.common.loadIcon
+import com.labi2d.challenge.moviestwo.model.database.Film
 
 class FilmsAdapter(private val dataset: List<Film>) :
     ListAdapter<Film, FilmsAdapter.ViewHolder>(basicDiffUtil { old, new -> old.name == new.name }) {

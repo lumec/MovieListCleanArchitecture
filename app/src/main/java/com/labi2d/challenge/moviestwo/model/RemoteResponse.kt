@@ -1,10 +1,10 @@
 package com.labi2d.challenge.moviestwo.model
 
 data class RemoteResponse(
-    val results: List<Film>
+    val results: List<RemoteFilm>
 )
 
-data class Film(
+data class RemoteFilm(
     val name: String?,
     val type: String?
 )

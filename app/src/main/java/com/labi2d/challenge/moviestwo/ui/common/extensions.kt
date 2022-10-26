@@ -1,11 +1,14 @@
-package com.labi2d.challenge.moviestwo
+package com.labi2d.challenge.moviestwo.ui.common
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.DiffUtil
+import com.labi2d.challenge.moviestwo.R
+import com.labi2d.challenge.moviestwo.ui.App
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = true): View =
     LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
@@ -34,3 +37,6 @@ var View.visible: Boolean
     set(value) {
         visibility = if (value) View.VISIBLE else View.GONE
     }
+
+val Context.app: App
+    get() = applicationContext as App

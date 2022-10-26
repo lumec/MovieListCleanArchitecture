@@ -21,7 +21,7 @@
         <argument
             android:name="filmType"
             app:argType="string"
-            android:defaultValue="MOVIES" />
+            android:defaultValue="MOVIE" />
     </fragment>
     <fragment
         android:id="@+id/series_dest"
@@ -29,6 +29,7 @@
         android:label="@string/series" >
         <argument
             android:name="filmType"
+            app:argType="string"
             android:defaultValue="SERIES" />
     </fragment>
 </navigation>

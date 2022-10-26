@@ -11,7 +11,8 @@ import androidx.navigation.fragment.navArgs
 import com.labi2d.challenge.moviestwo.R
 import com.labi2d.challenge.moviestwo.databinding.FragmentCommonBinding
 import com.labi2d.challenge.moviestwo.model.FilmsRepository
-import com.labi2d.challenge.moviestwo.visible
+import com.labi2d.challenge.moviestwo.ui.common.app
+import com.labi2d.challenge.moviestwo.ui.common.visible
 import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment(R.layout.fragment_common) {
@@ -19,7 +20,7 @@ class HomeFragment : Fragment(R.layout.fragment_common) {
     private val safeArgs: HomeFragmentArgs by navArgs()
 
     private val viewModel: HomeViewModel by viewModels {
-        HomeViewModelFactory(FilmsRepository(requireActivity().application), safeArgs.filmType)
+        HomeViewModelFactory(FilmsRepository(requireActivity().app), safeArgs.filmType)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -27,6 +28,7 @@ class HomeFragment : Fragment(R.layout.fragment_common) {
         val binding = FragmentCommonBinding.bind(view)
 
         lifecycleScope.launch {
+            viewModel.onUiReady()
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect { binding.updateUI(it) }
             }

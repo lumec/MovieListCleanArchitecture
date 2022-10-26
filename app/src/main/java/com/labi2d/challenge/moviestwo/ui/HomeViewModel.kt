@@ -3,8 +3,8 @@ package com.labi2d.challenge.moviestwo.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.labi2d.challenge.moviestwo.model.Film
 import com.labi2d.challenge.moviestwo.model.FilmsRepository
+import com.labi2d.challenge.moviestwo.model.database.Film
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -19,13 +19,20 @@ class HomeViewModel(
     val state: StateFlow<UiState> = _state.asStateFlow()
 
     init {
-        refresh()
+        viewModelScope.launch {
+            filmsRepository.films.collect { films ->
+                _state.value = UiState(films = films)
+            }
+        }
     }
 
-    private fun refresh() {
+    fun onUiReady() {
         viewModelScope.launch {
             _state.value = UiState(loading = true)
-            _state.value = UiState(films = filmsRepository.retrieveFilms(filmType))
+            filmsRepository.requestFilms()
+            filmsRepository.findByType(filmType).collect { films ->
+                _state.value = UiState(films = films)
+            }
         }
     }
 
