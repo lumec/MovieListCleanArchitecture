@@ -30,8 +30,14 @@ class HomeViewModel(
         viewModelScope.launch {
             _state.value = UiState(loading = true)
             filmsRepository.requestFilms()
-            filmsRepository.findByType(filmType).collect { films ->
-                _state.value = UiState(films = films)
+            filmsRepository.findByType(filmType).collect { filteredFilms ->
+                if (filteredFilms.isNotEmpty()) {
+                    _state.value = UiState(films = filteredFilms)
+                } else {
+                    filmsRepository.films.collect { films ->
+                        _state.value = UiState(films = films)
+                    }
+                }
             }
         }
     }

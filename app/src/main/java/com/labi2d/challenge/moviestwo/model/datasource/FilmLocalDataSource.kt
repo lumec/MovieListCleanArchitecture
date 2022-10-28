@@ -10,9 +10,7 @@ class FilmLocalDataSource(private val filmDao: FilmDao) {
 
     fun findByType(type: String): Flow<List<Film>> = filmDao.findByType(type)
 
-    fun isEmpty(): Boolean = filmDao.countFilm() == 0
+    suspend fun isEmpty(): Boolean = filmDao.countFilm() == 0
 
-    fun hasFilmsByType(type: String): Boolean = filmDao.countFilmsByType(type) == 1
-
-    fun save(films: List<Film>) = filmDao.insertFilms(films)
+    suspend fun save(films: List<Film>) = filmDao.insertFilms(films)
 }

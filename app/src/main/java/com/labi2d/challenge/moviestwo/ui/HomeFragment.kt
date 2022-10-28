@@ -28,8 +28,8 @@ class HomeFragment : Fragment(R.layout.fragment_common) {
         val binding = FragmentCommonBinding.bind(view)
 
         lifecycleScope.launch {
-            viewModel.onUiReady()
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.onUiReady()
                 viewModel.state.collect { binding.updateUI(it) }
             }
         }

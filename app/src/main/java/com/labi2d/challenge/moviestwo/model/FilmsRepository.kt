@@ -4,8 +4,6 @@ import com.labi2d.challenge.moviestwo.R
 import com.labi2d.challenge.moviestwo.model.datasource.FilmLocalDataSource
 import com.labi2d.challenge.moviestwo.model.datasource.FilmRemoteDataSource
 import com.labi2d.challenge.moviestwo.ui.App
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import com.labi2d.challenge.moviestwo.model.database.Film
 import kotlinx.coroutines.flow.Flow
 
@@ -16,13 +14,9 @@ class FilmsRepository(application: App) {
 
     val films = localDataSource.films
 
-    suspend fun findByType(type: String): Flow<List<Film>> = withContext(Dispatchers.IO) {
-        return@withContext if(localDataSource.hasFilmsByType(type)) {
-            localDataSource.findByType(type)
-        } else films
-    }
+    fun findByType(type: String): Flow<List<Film>> = localDataSource.findByType(type)
 
-    suspend fun requestFilms() = withContext(Dispatchers.IO) {
+    suspend fun requestFilms() {
         if (localDataSource.isEmpty()) {
             val films = remoteDataSource.fetchFilms()
             localDataSource.save(films.results.toLocalModel())

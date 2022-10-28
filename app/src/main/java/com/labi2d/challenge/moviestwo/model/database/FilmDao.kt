@@ -16,11 +16,8 @@ interface FilmDao {
     fun findByType(type: String) : Flow<List<Film>>
 
     @Query("SELECT COUNT(id) FROM Film")
-    fun countFilm(): Int
-
-    @Query("SELECT COUNT(*) FROM Film WHERE type = :type")
-    fun countFilmsByType(type: String): Int
+    suspend fun countFilm(): Int
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertFilms(films: List<Film>)
+    suspend fun insertFilms(films: List<Film>)
 }
