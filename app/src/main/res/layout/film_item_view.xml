@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/film_title"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="@string/film"
-    app:drawableLeftCompat="@drawable/ic_movies" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <TextView
+        android:id="@+id/film_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/film"
+        app:drawableLeftCompat="@drawable/ic_movies" />
+</layout>
 
 
