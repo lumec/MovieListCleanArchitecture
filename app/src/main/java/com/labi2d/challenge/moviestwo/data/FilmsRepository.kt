@@ -1,10 +1,10 @@
-package com.labi2d.challenge.moviestwo.model
+package com.labi2d.challenge.moviestwo.data
 
 import com.labi2d.challenge.moviestwo.R
-import com.labi2d.challenge.moviestwo.model.datasource.FilmLocalDataSource
-import com.labi2d.challenge.moviestwo.model.datasource.FilmRemoteDataSource
-import com.labi2d.challenge.moviestwo.ui.App
-import com.labi2d.challenge.moviestwo.model.database.Film
+import com.labi2d.challenge.moviestwo.data.datasource.FilmLocalDataSource
+import com.labi2d.challenge.moviestwo.data.datasource.FilmRemoteDataSource
+import com.labi2d.challenge.moviestwo.App
+import com.labi2d.challenge.moviestwo.data.database.Film
 import kotlinx.coroutines.flow.Flow
 
 class FilmsRepository(application: App) {

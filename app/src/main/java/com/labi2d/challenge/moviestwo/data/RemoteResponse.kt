@@ -1,4 +1,4 @@
-package com.labi2d.challenge.moviestwo.model
+package com.labi2d.challenge.moviestwo.data
 
 data class RemoteResponse(
     val results: List<RemoteFilm>

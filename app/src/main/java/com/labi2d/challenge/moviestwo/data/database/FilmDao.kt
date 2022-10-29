@@ -1,4 +1,4 @@
-package com.labi2d.challenge.moviestwo.model.database
+package com.labi2d.challenge.moviestwo.data.database
 
 import androidx.room.Dao
 import androidx.room.Insert

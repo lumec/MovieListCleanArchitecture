@@ -5,7 +5,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.labi2d.challenge.moviestwo.R
-import com.labi2d.challenge.moviestwo.model.database.Film
+import com.labi2d.challenge.moviestwo.data.database.Film
 import com.labi2d.challenge.moviestwo.ui.home.FilmsAdapter
 
 @BindingAdapter("icon")

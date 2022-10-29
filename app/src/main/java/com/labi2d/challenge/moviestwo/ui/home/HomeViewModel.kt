@@ -3,10 +3,10 @@ package com.labi2d.challenge.moviestwo.ui.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.labi2d.challenge.moviestwo.model.Error
-import com.labi2d.challenge.moviestwo.model.FilmsRepository
-import com.labi2d.challenge.moviestwo.model.database.Film
-import com.labi2d.challenge.moviestwo.model.toError
+import com.labi2d.challenge.moviestwo.data.Error
+import com.labi2d.challenge.moviestwo.data.FilmsRepository
+import com.labi2d.challenge.moviestwo.data.database.Film
+import com.labi2d.challenge.moviestwo.data.toError
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

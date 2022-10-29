@@ -1,6 +1,6 @@
-package com.labi2d.challenge.moviestwo.model.datasource
+package com.labi2d.challenge.moviestwo.data.datasource
 
-import com.labi2d.challenge.moviestwo.model.RemoteConnection
+import com.labi2d.challenge.moviestwo.data.RemoteConnection
 
 class FilmRemoteDataSource(
     private val apiKey: String,

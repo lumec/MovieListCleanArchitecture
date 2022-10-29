@@ -1,4 +1,4 @@
-package com.labi2d.challenge.moviestwo.model
+package com.labi2d.challenge.moviestwo.data
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

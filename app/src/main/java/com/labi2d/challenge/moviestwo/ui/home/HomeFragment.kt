@@ -10,10 +10,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import com.labi2d.challenge.moviestwo.R
 import com.labi2d.challenge.moviestwo.databinding.FragmentCommonBinding
-import com.labi2d.challenge.moviestwo.model.FilmsRepository
+import com.labi2d.challenge.moviestwo.data.FilmsRepository
 import com.labi2d.challenge.moviestwo.ui.common.app
 import kotlinx.coroutines.launch
-import com.labi2d.challenge.moviestwo.model.Error
+import com.labi2d.challenge.moviestwo.data.Error
 
 class HomeFragment : Fragment(R.layout.fragment_common) {
 

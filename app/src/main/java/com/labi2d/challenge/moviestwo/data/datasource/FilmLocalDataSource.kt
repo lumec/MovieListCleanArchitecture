@@ -1,7 +1,7 @@
-package com.labi2d.challenge.moviestwo.model.datasource
+package com.labi2d.challenge.moviestwo.data.datasource
 
-import com.labi2d.challenge.moviestwo.model.database.Film
-import com.labi2d.challenge.moviestwo.model.database.FilmDao
+import com.labi2d.challenge.moviestwo.data.database.Film
+import com.labi2d.challenge.moviestwo.data.database.FilmDao
 import kotlinx.coroutines.flow.Flow
 
 class FilmLocalDataSource(private val filmDao: FilmDao) {
