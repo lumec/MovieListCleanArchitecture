@@ -5,4 +5,8 @@
     <string name="series">Series</string>
     <string name="all">All</string>
     <string name="film">Film</string>
+
+    <string name="connectivity_error">Connectivity Error</string>
+    <string name="server_error">\"Server Error: \"</string>
+    <string name="unknown_error">\"Unknown Error: \"</string>
 </resources>

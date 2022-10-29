@@ -4,11 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="java.util.List" />
         <import type="com.labi2d.challenge.moviestwo.model.database.Film" />
 
         <variable
             name="loading"
-            type="boolean" />
+            type="Boolean" />
+
+        <variable
+            name="films"
+            type="List&lt;Film>" />
 
         <variable
             name="error"
@@ -25,6 +30,7 @@
             android:id="@+id/film_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:items="@{films}"
             app:visible="@{error == null}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:layout_editor_absoluteX="16dp"

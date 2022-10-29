@@ -24,19 +24,5 @@ inline fun <T : Any> basicDiffUtil(
         areContentsTheSame(oldItem, newItem)
 }
 
-fun TextView.loadIcon(type: String?) {
-    val icon = when(type) {
-        "MOVIE" -> R.drawable.ic_movies
-        else -> R.drawable.ic_series
-    }
-    setCompoundDrawablesWithIntrinsicBounds(icon, 0, 0, 0)
-}
-
-var View.visible: Boolean
-    get() = visibility == View.VISIBLE
-    set(value) {
-        visibility = if (value) View.VISIBLE else View.GONE
-    }
-
 val Context.app: App
     get() = applicationContext as App

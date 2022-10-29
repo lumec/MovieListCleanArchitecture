@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/home_dest"
-        android:name="com.labi2d.challenge.moviestwo.ui.HomeFragment"
+        android:name="com.labi2d.challenge.moviestwo.ui.home.HomeFragment"
         android:label="@string/home" >
         <argument
             android:name="filmType"
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/movies_dest"
-        android:name="com.labi2d.challenge.moviestwo.ui.HomeFragment"
+        android:name="com.labi2d.challenge.moviestwo.ui.home.HomeFragment"
         android:label="@string/movies" >
         <argument
             android:name="filmType"
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/series_dest"
-        android:name="com.labi2d.challenge.moviestwo.ui.HomeFragment"
+        android:name="com.labi2d.challenge.moviestwo.ui.home.HomeFragment"
         android:label="@string/series" >
         <argument
             android:name="filmType"

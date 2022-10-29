@@ -16,7 +16,7 @@ class FilmsRepository(application: App) {
 
     fun findByType(type: String): Flow<List<Film>> = localDataSource.findByType(type)
 
-    suspend fun requestFilms() {
+    suspend fun requestFilms(): Error? = tryCall {
         if (localDataSource.isEmpty()) {
             val films = remoteDataSource.fetchFilms()
             localDataSource.save(films.results.toLocalModel())

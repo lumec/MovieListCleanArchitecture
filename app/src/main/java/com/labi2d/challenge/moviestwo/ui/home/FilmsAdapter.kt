@@ -1,4 +1,4 @@
-package com.labi2d.challenge.moviestwo.ui
+package com.labi2d.challenge.moviestwo.ui.home
 
 import android.view.View
 import android.view.ViewGroup
@@ -8,10 +8,9 @@ import com.labi2d.challenge.moviestwo.R
 import com.labi2d.challenge.moviestwo.ui.common.basicDiffUtil
 import com.labi2d.challenge.moviestwo.databinding.FilmItemViewBinding
 import com.labi2d.challenge.moviestwo.ui.common.inflate
-import com.labi2d.challenge.moviestwo.ui.common.loadIcon
 import com.labi2d.challenge.moviestwo.model.database.Film
 
-class FilmsAdapter(private val dataset: List<Film>) :
+class FilmsAdapter :
     ListAdapter<Film, FilmsAdapter.ViewHolder>(basicDiffUtil { old, new -> old.name == new.name }) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -20,17 +19,14 @@ class FilmsAdapter(private val dataset: List<Film>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val film = dataset[position]
+        val film = getItem(position)
         holder.bind(film)
     }
 
-    override fun getItemCount(): Int = dataset.size
-
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = FilmItemViewBinding.bind(view)
-        fun bind(film: Film) = with(binding) {
-            filmTitle.text = film.name
-            filmTitle.loadIcon(film.type)
+        fun bind(film: Film) {
+            binding.film = film
         }
     }
 }
