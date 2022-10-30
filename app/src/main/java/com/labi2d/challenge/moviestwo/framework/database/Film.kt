@@ -1,4 +1,4 @@
-package com.labi2d.challenge.moviestwo.data.database
+package com.labi2d.challenge.moviestwo.framework.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

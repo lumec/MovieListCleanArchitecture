@@ -2,7 +2,7 @@ package com.labi2d.challenge.moviestwo
 
 import android.app.Application
 import androidx.room.Room
-import com.labi2d.challenge.moviestwo.data.database.FilmDatabase
+import com.labi2d.challenge.moviestwo.framework.database.FilmDatabase
 
 class App : Application() {
 
