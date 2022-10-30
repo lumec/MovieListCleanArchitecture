@@ -4,7 +4,7 @@ import com.labi2d.challenge.moviestwo.R
 import com.labi2d.challenge.moviestwo.data.datasource.FilmLocalDataSource
 import com.labi2d.challenge.moviestwo.data.datasource.FilmRemoteDataSource
 import com.labi2d.challenge.moviestwo.App
-import com.labi2d.challenge.moviestwo.data.database.Film
+import com.labi2d.challenge.moviestwo.domain.Film
 import kotlinx.coroutines.flow.Flow
 
 class FilmsRepository(application: App) {
@@ -19,15 +19,7 @@ class FilmsRepository(application: App) {
     suspend fun requestFilms(): Error? = tryCall {
         if (localDataSource.isEmpty()) {
             val films = remoteDataSource.fetchFilms()
-            localDataSource.save(films.results.toLocalModel())
+            localDataSource.save(films)
         }
     }
 }
-
-private fun List<RemoteFilm>.toLocalModel(): List<Film> = map { it.toLocalModel() }
-
-private fun RemoteFilm.toLocalModel(): Film = Film(
-    id = 0,
-    name ?: "",
-    type?: ""
-)

@@ -5,7 +5,7 @@
 
     <data>
         <import type="java.util.List" />
-        <import type="com.labi2d.challenge.moviestwo.data.database.Film" />
+        <import type="com.labi2d.challenge.moviestwo.domain.Film" />
 
         <variable
             name="loading"
