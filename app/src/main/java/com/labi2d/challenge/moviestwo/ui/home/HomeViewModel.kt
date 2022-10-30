@@ -4,12 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.labi2d.challenge.moviestwo.data.Error
-import com.labi2d.challenge.moviestwo.data.FilmsRepository
 import com.labi2d.challenge.moviestwo.data.database.Film
 import com.labi2d.challenge.moviestwo.data.toError
-import com.labi2d.challenge.moviestwo.domain.FindFilmsUseCase
-import com.labi2d.challenge.moviestwo.domain.GetFilmsUseCases
-import com.labi2d.challenge.moviestwo.domain.RequestFilmsUseCase
+import com.labi2d.challenge.moviestwo.usecases.FindFilmsUseCase
+import com.labi2d.challenge.moviestwo.usecases.GetFilmsUseCases
+import com.labi2d.challenge.moviestwo.usecases.RequestFilmsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

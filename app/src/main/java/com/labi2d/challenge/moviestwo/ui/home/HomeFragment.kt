@@ -14,9 +14,9 @@ import com.labi2d.challenge.moviestwo.data.FilmsRepository
 import com.labi2d.challenge.moviestwo.ui.common.app
 import kotlinx.coroutines.launch
 import com.labi2d.challenge.moviestwo.data.Error
-import com.labi2d.challenge.moviestwo.domain.FindFilmsUseCase
-import com.labi2d.challenge.moviestwo.domain.GetFilmsUseCases
-import com.labi2d.challenge.moviestwo.domain.RequestFilmsUseCase
+import com.labi2d.challenge.moviestwo.usecases.FindFilmsUseCase
+import com.labi2d.challenge.moviestwo.usecases.GetFilmsUseCases
+import com.labi2d.challenge.moviestwo.usecases.RequestFilmsUseCase
 
 class HomeFragment : Fragment(R.layout.fragment_common) {
 
