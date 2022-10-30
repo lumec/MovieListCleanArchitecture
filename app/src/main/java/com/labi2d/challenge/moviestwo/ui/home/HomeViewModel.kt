@@ -7,6 +7,9 @@ import com.labi2d.challenge.moviestwo.data.Error
 import com.labi2d.challenge.moviestwo.data.FilmsRepository
 import com.labi2d.challenge.moviestwo.data.database.Film
 import com.labi2d.challenge.moviestwo.data.toError
+import com.labi2d.challenge.moviestwo.domain.FindFilmsUseCase
+import com.labi2d.challenge.moviestwo.domain.GetFilmsUseCases
+import com.labi2d.challenge.moviestwo.domain.RequestFilmsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -15,7 +18,9 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
-    private val filmsRepository: FilmsRepository,
+    private val findFilmsUseCase: FindFilmsUseCase,
+    private val getFilmsUseCases: GetFilmsUseCases,
+    private val requestFilmsUseCase: RequestFilmsUseCase,
     private val filmType: String
 ) : ViewModel() {
 
@@ -24,7 +29,7 @@ class HomeViewModel(
 
     init {
         viewModelScope.launch {
-            filmsRepository.films
+            getFilmsUseCases()
                 .catch { cause -> _state.update { it.copy(error = cause.toError()) } }
                 .collect { films -> _state.update { UiState(films = films) } }
         }
@@ -33,21 +38,13 @@ class HomeViewModel(
     fun onUiReady() {
         viewModelScope.launch {
             _state.value = _state.value.copy(loading = true)
-            val error = filmsRepository.requestFilms()
+            val error = requestFilmsUseCase()
             if (error is Error) {
                 _state.update { _state.value.copy(loading = false, error = error) }
             } else {
-                filmsRepository.findByType(filmType)
+                findFilmsUseCase(filmType)
                     .catch { cause -> _state.update { it.copy(error = cause.toError()) } }
-                    .collect { filteredFilms ->
-                        if (filteredFilms.isNotEmpty()) {
-                            _state.update { UiState(films = filteredFilms) }
-                        } else {
-                            filmsRepository.films
-                                .catch { cause -> _state.update { it.copy(error = cause.toError()) } }
-                                .collect { films -> _state.update { UiState(films = films) } }
-                        }
-                    }
+                    .collect { filteredFilms -> _state.update { UiState(films = filteredFilms) } }
             }
         }
     }
@@ -61,11 +58,18 @@ class HomeViewModel(
 
 @Suppress("UNCHECKED_CAST")
 class HomeViewModelFactory(
-    private val filmsRepository: FilmsRepository,
+    private val findFilmsUseCase: FindFilmsUseCase,
+    private val getFilmsUseCases: GetFilmsUseCases,
+    private val requestFilmsUseCase: RequestFilmsUseCase,
     private val filmType: String
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return HomeViewModel(filmsRepository, filmType) as T
+        return HomeViewModel(
+            findFilmsUseCase,
+            getFilmsUseCases,
+            requestFilmsUseCase,
+            filmType
+        ) as T
     }
 }

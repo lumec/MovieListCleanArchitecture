@@ -12,7 +12,13 @@ interface FilmDao {
     @Query("SELECT * FROM Film")
     fun getAll() : Flow<List<Film>>
 
-    @Query("SELECT * FROM Film WHERE type = :type")
+    @Query("SELECT id, name, type \n" +
+            "FROM\n" +
+            "    (\n" +
+            "        SELECT id, name, type,\n" +
+            "        (CASE WHEN TYPE = :type THEN type else \"ALL\" END ) AS category\n" +
+            "        FROM Film WHERE category = :type\n" +
+            "    ) AS TEMP_FILM")
     fun findByType(type: String) : Flow<List<Film>>
 
     @Query("SELECT COUNT(id) FROM Film")

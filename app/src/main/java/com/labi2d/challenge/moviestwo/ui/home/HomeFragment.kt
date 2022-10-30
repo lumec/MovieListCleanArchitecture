@@ -14,6 +14,9 @@ import com.labi2d.challenge.moviestwo.data.FilmsRepository
 import com.labi2d.challenge.moviestwo.ui.common.app
 import kotlinx.coroutines.launch
 import com.labi2d.challenge.moviestwo.data.Error
+import com.labi2d.challenge.moviestwo.domain.FindFilmsUseCase
+import com.labi2d.challenge.moviestwo.domain.GetFilmsUseCases
+import com.labi2d.challenge.moviestwo.domain.RequestFilmsUseCase
 
 class HomeFragment : Fragment(R.layout.fragment_common) {
 
@@ -21,7 +24,13 @@ class HomeFragment : Fragment(R.layout.fragment_common) {
     private val adapter = FilmsAdapter()
 
     private val viewModel: HomeViewModel by viewModels {
-        HomeViewModelFactory(FilmsRepository(requireActivity().app), safeArgs.filmType)
+        val repository = FilmsRepository(requireActivity().app)
+        HomeViewModelFactory(
+            FindFilmsUseCase(repository),
+            GetFilmsUseCases(repository),
+            RequestFilmsUseCase(repository),
+            safeArgs.filmType
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
