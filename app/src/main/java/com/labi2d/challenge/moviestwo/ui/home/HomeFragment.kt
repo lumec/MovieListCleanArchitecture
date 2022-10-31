@@ -3,40 +3,24 @@ package com.labi2d.challenge.moviestwo.ui.home
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
-import com.labi2d.challenge.data.FilmsRepository
 import com.labi2d.challenge.domain.Error
 import com.labi2d.challenge.moviestwo.R
 import com.labi2d.challenge.moviestwo.databinding.FragmentCommonBinding
-import com.labi2d.challenge.moviestwo.framework.database.FilmRoomDataSource
-import com.labi2d.challenge.moviestwo.framework.server.FilmServerDataSource
-import com.labi2d.challenge.moviestwo.ui.common.app
-import com.labi2d.challenge.usecases.FindFilmsUseCase
-import com.labi2d.challenge.usecases.GetFilmsUseCases
-import com.labi2d.challenge.usecases.RequestFilmsUseCase
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class HomeFragment : Fragment(R.layout.fragment_common) {
 
     private val safeArgs: HomeFragmentArgs by navArgs()
     private val adapter = FilmsAdapter()
 
-    private val viewModel: HomeViewModel by viewModels {
-        val application = requireActivity().app
-        val repository = FilmsRepository(
-            FilmRoomDataSource(application.db.filmDao()),
-            FilmServerDataSource(getString(R.string.api_key))
-        )
-        HomeViewModelFactory(
-            FindFilmsUseCase(repository),
-            GetFilmsUseCases(repository),
-            RequestFilmsUseCase(repository),
-            safeArgs.filmType
-        )
+    private val viewModel: HomeViewModel by viewModel{
+        parametersOf(safeArgs.filmType)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
