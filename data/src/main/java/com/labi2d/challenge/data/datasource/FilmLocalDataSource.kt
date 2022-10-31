@@ -1,6 +1,6 @@
-package com.labi2d.challenge.moviestwo.data.datasource
+package com.labi2d.challenge.data.datasource
 
-import com.labi2d.challenge.moviestwo.domain.Film
+import com.labi2d.challenge.domain.Film
 import kotlinx.coroutines.flow.Flow
 
 interface FilmLocalDataSource {

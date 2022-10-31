@@ -1,4 +1,4 @@
-package com.labi2d.challenge.moviestwo.domain
+package com.labi2d.challenge.domain
 
 data class Film(
     val id: Int,

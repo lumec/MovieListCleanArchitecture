@@ -8,7 +8,7 @@ import com.labi2d.challenge.moviestwo.R
 import com.labi2d.challenge.moviestwo.ui.common.basicDiffUtil
 import com.labi2d.challenge.moviestwo.databinding.FilmItemViewBinding
 import com.labi2d.challenge.moviestwo.ui.common.inflate
-import com.labi2d.challenge.moviestwo.domain.Film
+import com.labi2d.challenge.domain.Film
 
 class FilmsAdapter :
     ListAdapter<Film, FilmsAdapter.ViewHolder>(basicDiffUtil { old, new -> old.name == new.name }) {

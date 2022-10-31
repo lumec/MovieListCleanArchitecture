@@ -8,16 +8,16 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
+import com.labi2d.challenge.data.FilmsRepository
+import com.labi2d.challenge.domain.Error
 import com.labi2d.challenge.moviestwo.R
-import com.labi2d.challenge.moviestwo.domain.Error
-import com.labi2d.challenge.moviestwo.data.FilmsRepository
 import com.labi2d.challenge.moviestwo.databinding.FragmentCommonBinding
 import com.labi2d.challenge.moviestwo.framework.database.FilmRoomDataSource
 import com.labi2d.challenge.moviestwo.framework.server.FilmServerDataSource
 import com.labi2d.challenge.moviestwo.ui.common.app
-import com.labi2d.challenge.moviestwo.usecases.FindFilmsUseCase
-import com.labi2d.challenge.moviestwo.usecases.GetFilmsUseCases
-import com.labi2d.challenge.moviestwo.usecases.RequestFilmsUseCase
+import com.labi2d.challenge.usecases.FindFilmsUseCase
+import com.labi2d.challenge.usecases.GetFilmsUseCases
+import com.labi2d.challenge.usecases.RequestFilmsUseCase
 import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment(R.layout.fragment_common) {

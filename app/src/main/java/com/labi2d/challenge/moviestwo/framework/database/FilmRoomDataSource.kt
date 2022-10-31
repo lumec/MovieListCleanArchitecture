@@ -1,8 +1,7 @@
 package com.labi2d.challenge.moviestwo.framework.database
 
-import com.labi2d.challenge.moviestwo.data.datasource.FilmLocalDataSource
-import com.labi2d.challenge.moviestwo.domain.Film
-import com.labi2d.challenge.moviestwo.framework.database.FilmDao
+import com.labi2d.challenge.data.datasource.FilmLocalDataSource
+import com.labi2d.challenge.domain.Film
 import com.labi2d.challenge.moviestwo.framework.database.Film as DbFilm
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

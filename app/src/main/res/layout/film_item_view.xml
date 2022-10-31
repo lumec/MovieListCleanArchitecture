@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="com.labi2d.challenge.moviestwo.domain.Film" />
+        <import type="com.labi2d.challenge.domain.Film" />
 
         <variable
             name="film"
-            type="Film" />
+            type="com.labi2d.challenge.domain.Film" />
     </data>
 
     <TextView

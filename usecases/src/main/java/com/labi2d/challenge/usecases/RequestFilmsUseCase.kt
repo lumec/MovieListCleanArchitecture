@@ -1,7 +1,7 @@
-package com.labi2d.challenge.moviestwo.usecases
+package com.labi2d.challenge.usecases
 
-import com.labi2d.challenge.moviestwo.domain.Error
-import com.labi2d.challenge.moviestwo.data.FilmsRepository
+import com.labi2d.challenge.data.FilmsRepository
+import com.labi2d.challenge.domain.Error
 
 class RequestFilmsUseCase(private val filmsRepository: FilmsRepository) {
 

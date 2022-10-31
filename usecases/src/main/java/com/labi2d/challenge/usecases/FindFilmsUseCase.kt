@@ -1,7 +1,7 @@
-package com.labi2d.challenge.moviestwo.usecases
+package com.labi2d.challenge.usecases
 
-import com.labi2d.challenge.moviestwo.data.FilmsRepository
-import com.labi2d.challenge.moviestwo.domain.Film
+import com.labi2d.challenge.data.FilmsRepository
+import com.labi2d.challenge.domain.Film
 import kotlinx.coroutines.flow.Flow
 
 class FindFilmsUseCase(private val filmsRepository: FilmsRepository) {

@@ -5,7 +5,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.labi2d.challenge.moviestwo.R
-import com.labi2d.challenge.moviestwo.domain.Film
+import com.labi2d.challenge.domain.Film
 import com.labi2d.challenge.moviestwo.ui.home.FilmsAdapter
 
 @BindingAdapter("icon")
@@ -18,7 +18,7 @@ fun TextView.loadIcon(type: String?) {
 }
 
 @BindingAdapter("items")
-fun RecyclerView.setItems(films: List<Film>?) {
+fun RecyclerView.setItems(films: List<com.labi2d.challenge.domain.Film>?) {
     if (films != null) {
         (adapter as? FilmsAdapter)?.submitList(films)
     }
