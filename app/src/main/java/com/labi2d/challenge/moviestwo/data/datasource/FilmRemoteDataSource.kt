@@ -1,3 +1,7 @@
 package com.labi2d.challenge.moviestwo.data.datasource
 
-interface FilmRemoteDataSource
+import com.labi2d.challenge.moviestwo.domain.Film
+
+interface FilmRemoteDataSource {
+    suspend fun fetchFilms(): List<Film>
+}

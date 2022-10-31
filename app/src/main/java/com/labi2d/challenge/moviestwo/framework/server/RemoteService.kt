@@ -1,4 +1,4 @@
-package com.labi2d.challenge.moviestwo.data
+package com.labi2d.challenge.moviestwo.framework.server
 
 import retrofit2.http.GET
 import retrofit2.http.Path

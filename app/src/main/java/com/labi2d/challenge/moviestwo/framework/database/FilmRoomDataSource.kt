@@ -1,4 +1,4 @@
-package com.labi2d.challenge.moviestwo.framework.datasource
+package com.labi2d.challenge.moviestwo.framework.database
 
 import com.labi2d.challenge.moviestwo.data.datasource.FilmLocalDataSource
 import com.labi2d.challenge.moviestwo.domain.Film

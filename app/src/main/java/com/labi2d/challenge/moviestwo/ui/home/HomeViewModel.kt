@@ -3,9 +3,9 @@ package com.labi2d.challenge.moviestwo.ui.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.labi2d.challenge.moviestwo.data.Error
+import com.labi2d.challenge.moviestwo.domain.Error
 import com.labi2d.challenge.moviestwo.domain.Film
-import com.labi2d.challenge.moviestwo.data.toError
+import com.labi2d.challenge.moviestwo.domain.toError
 import com.labi2d.challenge.moviestwo.usecases.FindFilmsUseCase
 import com.labi2d.challenge.moviestwo.usecases.GetFilmsUseCases
 import com.labi2d.challenge.moviestwo.usecases.RequestFilmsUseCase

@@ -9,14 +9,16 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import com.labi2d.challenge.moviestwo.R
-import com.labi2d.challenge.moviestwo.databinding.FragmentCommonBinding
+import com.labi2d.challenge.moviestwo.domain.Error
 import com.labi2d.challenge.moviestwo.data.FilmsRepository
+import com.labi2d.challenge.moviestwo.databinding.FragmentCommonBinding
+import com.labi2d.challenge.moviestwo.framework.database.FilmRoomDataSource
+import com.labi2d.challenge.moviestwo.framework.server.FilmServerDataSource
 import com.labi2d.challenge.moviestwo.ui.common.app
-import kotlinx.coroutines.launch
-import com.labi2d.challenge.moviestwo.data.Error
 import com.labi2d.challenge.moviestwo.usecases.FindFilmsUseCase
 import com.labi2d.challenge.moviestwo.usecases.GetFilmsUseCases
 import com.labi2d.challenge.moviestwo.usecases.RequestFilmsUseCase
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment(R.layout.fragment_common) {
 
@@ -24,7 +26,11 @@ class HomeFragment : Fragment(R.layout.fragment_common) {
     private val adapter = FilmsAdapter()
 
     private val viewModel: HomeViewModel by viewModels {
-        val repository = FilmsRepository(requireActivity().app)
+        val application = requireActivity().app
+        val repository = FilmsRepository(
+            FilmRoomDataSource(application.db.filmDao()),
+            FilmServerDataSource(getString(R.string.api_key))
+        )
         HomeViewModelFactory(
             FindFilmsUseCase(repository),
             GetFilmsUseCases(repository),

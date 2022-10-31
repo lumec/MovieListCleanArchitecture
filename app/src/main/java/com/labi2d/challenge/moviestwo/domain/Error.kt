@@ -1,4 +1,4 @@
-package com.labi2d.challenge.moviestwo.data
+package com.labi2d.challenge.moviestwo.domain
 
 import retrofit2.HttpException
 import java.io.IOException
