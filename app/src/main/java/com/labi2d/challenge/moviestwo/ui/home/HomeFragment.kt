@@ -26,17 +26,7 @@ class HomeFragment : Fragment(R.layout.fragment_common) {
     private val adapter = FilmsAdapter()
 
     private val viewModel: HomeViewModel by viewModels {
-        val application = requireActivity().app
-        val repository = FilmsRepository(
-            FilmRoomDataSource(application.db.filmDao()),
-            FilmServerDataSource(getString(R.string.api_key))
-        )
-        HomeViewModelFactory(
-            FindFilmsUseCase(repository),
-            GetFilmsUseCases(repository),
-            RequestFilmsUseCase(repository),
-            safeArgs.filmType
-        )
+        app.component.homeViewModelFactory
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

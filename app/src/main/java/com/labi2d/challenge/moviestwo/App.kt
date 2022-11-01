@@ -1,20 +1,18 @@
 package com.labi2d.challenge.moviestwo
 
 import android.app.Application
-import androidx.room.Room
-import com.labi2d.challenge.moviestwo.framework.database.FilmDatabase
+import com.labi2d.challenge.moviestwo.di.AppComponent
+import com.labi2d.challenge.moviestwo.di.DaggerAppComponent
 
 class App : Application() {
 
-    lateinit var db: FilmDatabase
+    lateinit var component: AppComponent
         private set
 
     override fun onCreate() {
         super.onCreate()
-
-        db = Room.databaseBuilder(
-            this,
-            FilmDatabase::class.java, "film-database"
-        ).build()
+        component = DaggerAppComponent
+            .factory()
+            .create(this)
     }
 }
