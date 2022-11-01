@@ -4,11 +4,12 @@ import arrow.core.Either
 import com.labi2d.challenge.data.datasource.FilmRemoteDataSource
 import com.labi2d.challenge.domain.Film
 import com.labi2d.challenge.domain.Error
+import com.labi2d.challenge.moviestwo.di.ApiKey
 import com.labi2d.challenge.moviestwo.framework.tryCall
+import javax.inject.Inject
 
-class FilmServerDataSource(
-    private val apiKey: String,
-) : FilmRemoteDataSource {
+class FilmServerDataSource @Inject constructor(@ApiKey private val apiKey: String) :
+    FilmRemoteDataSource {
     override suspend fun fetchFilms(): Either<Error, List<Film>> = tryCall {
         RemoteConnection.service
             .listFilms(apiKey)

@@ -5,8 +5,9 @@ import com.labi2d.challenge.data.datasource.FilmRemoteDataSource
 import com.labi2d.challenge.domain.Error
 import com.labi2d.challenge.domain.Film
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class FilmsRepository(
+class FilmsRepository @Inject constructor(
     private val localDataSource: FilmLocalDataSource,
     private val remoteDataSource: FilmRemoteDataSource
 ) {

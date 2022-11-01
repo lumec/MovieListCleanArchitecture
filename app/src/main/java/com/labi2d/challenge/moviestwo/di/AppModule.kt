@@ -8,6 +8,7 @@ import com.labi2d.challenge.moviestwo.R
 import com.labi2d.challenge.moviestwo.framework.database.FilmDatabase
 import com.labi2d.challenge.moviestwo.framework.database.FilmRoomDataSource
 import com.labi2d.challenge.moviestwo.framework.server.FilmServerDataSource
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
@@ -29,10 +30,16 @@ object AppModule {
     ).build()
 
     @Provides
-    fun provideLocalDataSource(db: FilmDatabase): FilmLocalDataSource =
-        FilmRoomDataSource(db.filmDao())
+    @Singleton
+    fun provideFilmDao(db: FilmDatabase) = db.filmDao()
+}
 
-    @Provides
-    fun provideRemoteDataSource(@ApiKey apiKey: String): FilmRemoteDataSource =
-        FilmServerDataSource(apiKey)
+@Module
+abstract class AppDataModule {
+
+    @Binds
+    abstract fun bindLocalDataSource(localDataSource: FilmRoomDataSource): FilmLocalDataSource
+
+    @Binds
+    abstract fun bindRemoteDataSource(remoteDataSource: FilmServerDataSource): FilmRemoteDataSource
 }

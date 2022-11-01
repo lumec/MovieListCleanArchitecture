@@ -5,8 +5,9 @@ import com.labi2d.challenge.domain.Film
 import com.labi2d.challenge.moviestwo.framework.database.Film as DbFilm
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class FilmRoomDataSource(private val filmDao: FilmDao) : FilmLocalDataSource {
+class FilmRoomDataSource @Inject constructor(private val filmDao: FilmDao) : FilmLocalDataSource {
 
     override val films: Flow<List<Film>> = filmDao.getAll().map { it.toDomainModel() }
 
