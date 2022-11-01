@@ -8,25 +8,26 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
-import com.labi2d.challenge.data.FilmsRepository
 import com.labi2d.challenge.domain.Error
 import com.labi2d.challenge.moviestwo.R
 import com.labi2d.challenge.moviestwo.databinding.FragmentCommonBinding
-import com.labi2d.challenge.moviestwo.framework.database.FilmRoomDataSource
-import com.labi2d.challenge.moviestwo.framework.server.FilmServerDataSource
 import com.labi2d.challenge.moviestwo.ui.common.app
-import com.labi2d.challenge.usecases.FindFilmsUseCase
-import com.labi2d.challenge.usecases.GetFilmsUseCases
-import com.labi2d.challenge.usecases.RequestFilmsUseCase
 import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment(R.layout.fragment_common) {
 
+    private lateinit var component: HomeFragmentComponent
     private val safeArgs: HomeFragmentArgs by navArgs()
     private val adapter = FilmsAdapter()
 
+
     private val viewModel: HomeViewModel by viewModels {
-        app.component.homeViewModelFactory
+        component.homeViewModelFactory
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        component = app.component.plus(HomeFragmentModule(safeArgs.filmType))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

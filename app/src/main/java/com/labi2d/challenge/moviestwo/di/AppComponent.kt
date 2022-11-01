@@ -1,16 +1,17 @@
 package com.labi2d.challenge.moviestwo.di
 
 import android.app.Application
-import com.labi2d.challenge.moviestwo.ui.home.HomeViewModelFactory
+import com.labi2d.challenge.moviestwo.ui.home.HomeFragmentComponent
+import com.labi2d.challenge.moviestwo.ui.home.HomeFragmentModule
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AppModule::class, DataModule::class, UseCaseModule::class, ViewModelModule::class])
+@Component(modules = [AppModule::class, DataModule::class, UseCaseModule::class])
 interface AppComponent {
 
-    val homeViewModelFactory: HomeViewModelFactory
+    fun plus(module: HomeFragmentModule): HomeFragmentComponent
 
     @Component.Factory
     interface Factory {
