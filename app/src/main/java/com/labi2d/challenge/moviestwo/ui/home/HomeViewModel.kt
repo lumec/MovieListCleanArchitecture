@@ -9,6 +9,9 @@ import com.labi2d.challenge.moviestwo.framework.toError
 import com.labi2d.challenge.usecases.FindFilmsUseCase
 import com.labi2d.challenge.usecases.GetFilmsUseCases
 import com.labi2d.challenge.usecases.RequestFilmsUseCase
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -56,11 +59,11 @@ class HomeViewModel(
 }
 
 @Suppress("UNCHECKED_CAST")
-class HomeViewModelFactory(
+class HomeViewModelFactory @AssistedInject constructor(
     private val findFilmsUseCase: FindFilmsUseCase,
     private val getFilmsUseCases: GetFilmsUseCases,
     private val requestFilmsUseCase: RequestFilmsUseCase,
-    private val filmType: String
+    @Assisted private val filmType: String
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -71,4 +74,10 @@ class HomeViewModelFactory(
             filmType
         ) as T
     }
+}
+
+
+@AssistedFactory
+interface HomeViewModelAssistedFactory {
+    fun create(filmType: String): HomeViewModelFactory
 }

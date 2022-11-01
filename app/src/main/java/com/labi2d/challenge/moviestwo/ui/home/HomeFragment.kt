@@ -13,21 +13,23 @@ import com.labi2d.challenge.moviestwo.R
 import com.labi2d.challenge.moviestwo.databinding.FragmentCommonBinding
 import com.labi2d.challenge.moviestwo.ui.common.app
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class HomeFragment : Fragment(R.layout.fragment_common) {
 
-    private lateinit var component: HomeFragmentComponent
+    @Inject
+    lateinit var vmFactory: HomeViewModelAssistedFactory
     private val safeArgs: HomeFragmentArgs by navArgs()
     private val adapter = FilmsAdapter()
 
 
     private val viewModel: HomeViewModel by viewModels {
-        component.homeViewModelFactory
+        vmFactory.create(safeArgs.filmType)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        component = app.component.plus(HomeFragmentModule(safeArgs.filmType))
+        app.component.inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

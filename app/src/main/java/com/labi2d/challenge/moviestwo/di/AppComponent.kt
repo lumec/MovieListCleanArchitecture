@@ -1,8 +1,7 @@
 package com.labi2d.challenge.moviestwo.di
 
 import android.app.Application
-import com.labi2d.challenge.moviestwo.ui.home.HomeFragmentComponent
-import com.labi2d.challenge.moviestwo.ui.home.HomeFragmentModule
+import com.labi2d.challenge.moviestwo.ui.home.HomeFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -11,7 +10,7 @@ import javax.inject.Singleton
 @Component(modules = [AppModule::class, AppDataModule::class])
 interface AppComponent {
 
-    fun plus(module: HomeFragmentModule): HomeFragmentComponent
+    fun inject(fragment: HomeFragment)
 
     @Component.Factory
     interface Factory {
