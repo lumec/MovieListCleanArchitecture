@@ -1,5 +1,6 @@
 package com.labi2d.challenge.moviestwo.ui.home
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -12,21 +13,25 @@ import com.labi2d.challenge.usecases.RequestFilmsUseCase
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel(
+@HiltViewModel
+class HomeViewModel @Inject constructor(
     private val findFilmsUseCase: FindFilmsUseCase,
     private val getFilmsUseCases: GetFilmsUseCases,
     private val requestFilmsUseCase: RequestFilmsUseCase,
-    private val filmType: String
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(UiState())
+    private val filmType = HomeFragmentArgs.fromSavedStateHandle(savedStateHandle).filmType
     val state: StateFlow<UiState> = _state.asStateFlow()
 
     init {
@@ -56,28 +61,4 @@ class HomeViewModel(
         val films: List<Film>? = null,
         val error: Error? = null,
     )
-}
-
-@Suppress("UNCHECKED_CAST")
-class HomeViewModelFactory @AssistedInject constructor(
-    private val findFilmsUseCase: FindFilmsUseCase,
-    private val getFilmsUseCases: GetFilmsUseCases,
-    private val requestFilmsUseCase: RequestFilmsUseCase,
-    @Assisted private val filmType: String
-) : ViewModelProvider.Factory {
-
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return HomeViewModel(
-            findFilmsUseCase,
-            getFilmsUseCases,
-            requestFilmsUseCase,
-            filmType
-        ) as T
-    }
-}
-
-
-@AssistedFactory
-interface HomeViewModelAssistedFactory {
-    fun create(filmType: String): HomeViewModelFactory
 }
