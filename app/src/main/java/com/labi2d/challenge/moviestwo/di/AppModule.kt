@@ -18,7 +18,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    @Named("apiKey")
+    @ApiKey
     fun provideApiKey(app: Application): String = app.getString(R.string.api_key)
 
     @Provides
@@ -33,6 +33,6 @@ object AppModule {
         FilmRoomDataSource(db.filmDao())
 
     @Provides
-    fun provideRemoteDataSource(@Named("apiKey") apiKey: String): FilmRemoteDataSource =
+    fun provideRemoteDataSource(@ApiKey apiKey: String): FilmRemoteDataSource =
         FilmServerDataSource(apiKey)
 }
