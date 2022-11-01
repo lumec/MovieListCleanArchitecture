@@ -1,7 +1,9 @@
 package com.labi2d.challenge.moviestwo.framework.database
 
 import com.labi2d.challenge.data.datasource.FilmLocalDataSource
+import com.labi2d.challenge.domain.Error
 import com.labi2d.challenge.domain.Film
+import com.labi2d.challenge.moviestwo.framework.tryCall
 import com.labi2d.challenge.moviestwo.framework.database.Film as DbFilm
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -16,7 +18,12 @@ class FilmRoomDataSource @Inject constructor(private val filmDao: FilmDao) : Fil
 
     override suspend fun isEmpty(): Boolean = filmDao.countFilm() == 0
 
-    override suspend fun save(films: List<Film>) = filmDao.insertFilms(films.fromDomainModel())
+    override suspend fun save(films: List<Film>): Error? = tryCall {
+        filmDao.insertFilms(films.fromDomainModel())
+    }.fold(
+        ifLeft = { it },
+        ifRight = { null }
+    )
 }
 
 private fun List<DbFilm>.toDomainModel(): List<Film> = map { it.toDomainModel() }
